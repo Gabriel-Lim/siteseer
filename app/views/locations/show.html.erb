@@ -13,10 +13,12 @@
   <%= @location.longitude %>
 </p>
 
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}" %>
+
 <h3>Nearby Locations of Users (within 10 km)</h3>
 <ul>
 <% for location in @location.nearbys(10/(1.6)) %>
-<li><%= link_to location.address, location %> (<%= ((location.distance) * 1.6).round(2) %> kilometers)</li>
+<li><%= link_to location.address, location %> (<%= sprintf("%.2f", ((location.distance) * 1.6)) %> kilometers)</li>
 <% end %>
 </ul>
 
